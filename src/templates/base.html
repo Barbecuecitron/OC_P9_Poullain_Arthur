@@ -1,0 +1,19 @@
+<html>
+  <head>
+    <title>LITReview</title>
+  </head>
+  <body>
+    <h1>LITReview</h1>
+    {% block content %}{% endblock content %} {% if user.is_authenticated %}
+    <p>
+      Bienvenue {{ request.user }}. Cliquez ici pour
+      <a href="{% url 'logout' %}">vous déconnecter</a>
+    </p>
+    {% endif %}
+    {% if not user.is_authenticated %}
+    <p>Pas encore inscrit ? <a href="{%url 'signup' %}">Créer un compte ! </a></p>
+    {% endif %}
+    <!-- {% if user.is_authenticated %} -->
+    <!-- {% endif %} -->
+  </body>
+</html>
