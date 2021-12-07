@@ -2,9 +2,14 @@
         
         <div  class="Ticket">
         <p>
-          Ticket n°{{article.id}} - {{article.user}} {{article.time_created|date:'d F Y'}}
+          Ticket n°{{article.id}} - {{article.user}} {{article.time_created|date:'d F Y'}}:{{article.time_created|time:"h:i a"}}
           <h4> {{article.title}} </h4>
           {{article.description}} <br>
+          {% if article.image.url is not none%}
+          <img src="{{ article.image.url }}"/><br>
+          {% else %}
+          <img src="/images/litreview_defaultimage.png"/><br>
+          {% endif %}
 
         {% comment %} Are we the author ? If so, we can modify the post {% endcomment %}
           {% if user.id == article.user.id %}

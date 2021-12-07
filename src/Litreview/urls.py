@@ -17,6 +17,8 @@ from django.contrib import admin
 from django.urls import path
 from django.urls.conf import include
 import user_login.views
+from django.conf import settings
+from django.conf.urls.static import static
 # import abonnement.urls
 # import posts.urls
 urlpatterns = [
@@ -33,3 +35,8 @@ urlpatterns = [
     path("flux/", include("posts.urls")),
     path("posts/", include("posts.urls"))
 ]
+
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL,
+                          document_root=settings.MEDIA_ROOT)

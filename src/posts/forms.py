@@ -1,4 +1,4 @@
-from django.forms import forms, ModelForm
+from django.forms import ModelForm
 from posts.models import Review, Ticket
 
 
@@ -11,4 +11,4 @@ class ReviewForm(ModelForm):
 class TicketForm(ModelForm):
     class Meta:
         model = Ticket
-        fields = ["title", "description"]
+        fields = ["title", "description", "image"]

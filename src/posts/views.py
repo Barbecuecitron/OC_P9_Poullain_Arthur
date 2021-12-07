@@ -56,7 +56,7 @@ def get_everythin_user_related(user_identifier):
 
 
 def my_posts(request):
-    # Loads our tickets with their responses.
+    # Loads our tickets & their responses.
     # Then load our responses with their tickets.
     my_articles = get_everythin_user_related(request.user.pk)
 
@@ -71,18 +71,9 @@ def my_posts(request):
 def list_articles(request):
     followed_users = get_followed_users(request.user.pk)
     context = {}
-    #  If we don't follow anyone, let's still display our posts so it is not empty
+    #  If we don't follow anyone
     if followed_users == False:
         context['message'] = 'Vous ne suivez personne et ne verrez donc aucun post. Rendez-vous dans la rubrique "Abonnements" pour commencer à suivre des utilisateurs !'
-    #     tickets_to_display = Ticket.objects.filter(user_id=request.user.pk)
-    #     for ask in tickets_to_display:
-    #         try:
-    #             linked_review = Review.objects.get(ticket_id=ask.pk)
-    #             ask.review = linked_review
-    #         except:
-    #             Review.DoesNotExist
-    #     context['articles'] = tickets_to_display
-    # # If we do follow some people, let's display their stuff instead since we can retrieve ours in "MY POSTS"
     else:
         tickets_to_display = Ticket.objects.filter(user_id__in=followed_users)
         for ask in tickets_to_display:
@@ -151,10 +142,11 @@ def write_ticket(request, id_article=None):
     elif request.method == "POST":
         # We modify an existing article
         if id_article is not None:
-            form = TicketForm(request.POST, instance=instance_article)
+            form = TicketForm(request.POST, request.FILES,
+                              instance=instance_article)
         else:
             # We create a new one
-            form = TicketForm(request.POST)
+            form = TicketForm(request.POST, request.FILES)
 
         if form.is_valid():
             form.instance.user = request.user
@@ -173,12 +165,23 @@ def create_and_resolve(request):
     # Retrieve the 2 forms in a single POST request
     if request.method == "POST":
         rget = request.POST.get
+        rget_img = request.FILES.get('image', False)
+        if not rget_img:
+            # We can't return the forms separately from the HTML's POST request, so
+            # Create our objects manually from our retrieved data
 
-        # Since we can't return the forms separately from the HTML's POST request, let's
-        # Create our objects manually from our retrieved data
-        instance_ticket = Ticket(title=rget("title"),
-                                 description=rget("description"),
-                                 user=request.user)
+            # No image
+            instance_ticket = Ticket(title=rget("title"),
+                                     description=rget("description"),
+                                     user=request.user
+                                     )
+        else:
+            # Image
+            instance_ticket = Ticket(title=rget("title"),
+                                     description=rget("description"),
+                                     user=request.user,
+                                     image=rget_img)
+
         instance_ticket.save()
 
         review = Review(ticket=instance_ticket,
@@ -201,6 +204,8 @@ def delete_post(request, id_article, type=0):
 
     post = DeleteType
     if request.method == "POST":
+        if type == 0 and post.image is not None:
+            post.image.delete()
         post.delete()
         return redirect("flux")
 
