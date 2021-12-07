@@ -1,0 +1,28 @@
+{% extends 'navbar.html' %}
+
+{% block content %}
+  <h2>Flux</h2>
+  {% comment %} <a href="{% url 'write_ticket' %}"> Demander une critique </a>
+  <a href="{% url 'self_resolved' %}"> Créer une critique </a> {% endcomment %}
+
+  <form action="{% url 'write_ticket' %}" method='GET'>
+<button type='submit'> Demander une critique</button>
+</form>
+  <form action="{% url 'self_resolved' %}" method='GET'>
+<button type='submit'> Créer une critique</button>
+</form>
+
+
+  <ul>
+      {% if message %}
+      <h4> {{message}} </h4>
+    {% endif %}
+
+  {% if articles %}
+    {% for article in articles %}
+        {% comment %} If its a Ticket & not a review {% endcomment %}
+      {% include "ticket_display.html" %}
+      {% endfor %}
+  {% endif %}
+</ul>
+{% endblock %}

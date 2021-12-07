@@ -1,0 +1,15 @@
+{% extends 'navbar.html' %}
+
+{% block content %}
+<h1>{{ message }} une demande :</h1>
+    {% if form.instance.id %}
+        <h2> {{form.instance.id}}</h2>
+        <form method="POST" action="{% url 'write_ticket' id_article=form.instance.id %}">
+    {% else %}
+        <form method="POST" action="{% url 'write_ticket'%}">
+    {% endif %}
+     {% csrf_token %}
+    {{ form }}
+    <input type="submit">
+    </form>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'navbar.html' %}
+
+{% block content %}
+<h1>{{ message }} une critique :</h1>
+<div  class="Ticket">
+        <p>
+          Ticket n°{{ticket.id}} - {{ticket.user}}
+            <h4> {{ticket.title}} </h4>
+            {{ticket.description}} <br>
+        </p>
+    <form method="POST" action="{% url 'write_review' id_article=ticket.id %}">
+    
+         {% csrf_token %}
+    {{ form }}
+    <input type="submit">
+    </form>
+{% endblock %}

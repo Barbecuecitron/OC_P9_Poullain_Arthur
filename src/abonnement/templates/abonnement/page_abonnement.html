@@ -1,0 +1,42 @@
+{% extends 'base.html' %} {% block content %}
+{% if user.is_authenticated %}
+<h2>Abonnements</h2>
+    <h4> Utilisateurs non suivis :</h4>
+    {%for unfollowed_user in unfollowed%}
+            <li>{{unfollowed_user}}</li>
+    {% endfor %}
+
+    <h3>{{message}}</h3>
+        <h4>Suivre d'autres utilisateurs</h4>
+        <form action="" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit" value="Suivre">
+    </form>
+
+    
+
+
+    <h4> Abonnements : </h4>
+    {%for followed_user in followed%}
+        {% if user != followed_user %}
+            <li>{{followed_user}}
+                <button class="create_critic_button2"
+                    onclick="location.href='{% url 'unsubscribe' user_to_unfollow_id=followed_user.pk %}'"
+                    type="button">
+                    Désabonner {{followed_user.id}}
+                </button>
+            </li>
+        {% endif %}
+    {% endfor %}
+
+        <h4> Abonnés : </h4>
+        {%for follower_user in followers%}
+        {% if user != follower_user %}
+            <li>{{follower_user}}</li>
+        {% endif %}
+    {% endfor %}
+
+{% comment %} </form> {% endcomment %}
+{% endif %}
+{% endblock content %}

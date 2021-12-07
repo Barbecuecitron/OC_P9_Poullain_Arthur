@@ -8,22 +8,17 @@ from django.conf import settings
 
 
 def index(request):
-   # return HttpResponse("<h1>Le Exemple</h1>")
     return render(request, "user_login/index.html")
 
 
 def logout_user(request):
     logout(request)
-    # return redirect('login.html')
     return login_page(request)
 
 
 def login_page(request, msg=False):
     form = forms.LoginForm()
-    message = msg
-    if not message:
-        message = ''
-
+    message = ''
     if request.method == 'POST':
         form = forms.LoginForm(request.POST)
         if form.is_valid():
@@ -34,7 +29,7 @@ def login_page(request, msg=False):
             if user is not None:
                 login(request, user)
                # message = f'Bienvenue {user.username}!'
-                return redirect("home")
+                return redirect("flux")
             else:
                 message = 'Vos identifiants sont incorrects'
     return render(
@@ -48,5 +43,5 @@ def signup_page(request):
         if form.is_valid():
             user = form.save()
             login(request, user)
-            return redirect(settings.LOGIN_REDIRECT_URL)
+            return redirect("flux")
     return render(request, 'authentication/signup.html', context={'form': form})

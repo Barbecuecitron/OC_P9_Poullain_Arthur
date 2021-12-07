@@ -1,0 +1,24 @@
+{% extends 'navbar.html' %}
+{% block content %}
+{% if user.id != item.user.id %}
+    <h1>Vous n'êtes pas autorisé à faire ça. Chenapan va.</h1>
+    
+{% else %} 
+
+    <p> Êtes-vous sûr de vouloir supprimer ce post ?</p>
+    {% comment %} 0 = ticket, 1 = review, optimized way to check the post's type {% endcomment %}
+    {% if type == 1 %}
+    <h4>Suppression d'un commentaire</h4>
+        <h4> {{item.headline}} </h4>
+        <h4> {{item.body}} </h4>
+    {% else %}
+    <h4> Suppression d'un Ticket </h4>
+    {% endif %}
+        <h1> {{type}} </h1>
+        <form action="{%url 'delete_post' item.id type%}" method="POST">
+        <a href="{% url 'flux'%}"> Cancel</a>
+        <input type = "submit" name = "Confirm">
+        {% csrf_token %}
+        </form>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,33 @@
+{%if article.rating is none %}
+        
+        <div  class="Ticket">
+        <p>
+          Ticket n°{{article.id}} - {{article.user}} {{article.time_created|date:'d F Y'}}
+          <h4> {{article.title}} </h4>
+          {{article.description}} <br>
+
+        {% comment %} Are we the author ? If so, we can modify the post {% endcomment %}
+          {% if user.id == article.user.id %}
+            <a href="{% url 'write_ticket' id_article=article.id %}"> Modifier {{article.id}}</a>
+            <a href="{% url 'delete_post' id_article=article.id type=0%}"> Delete {{article.id}}</a> <br><br>
+          {% endif %}
+          {% comment %}  If there is no answer to the ticket : {% endcomment %}
+            {% comment %} If there is no review yet, we should be able to create one {% endcomment %}
+            {% if not article.review %}
+            {% comment %} Except if we are the author. {% endcomment %}
+              {% if user.id != article.user.id %}
+                <button class="create_critic_button"
+                onclick="location.href='{% url 'write_review' id_article=article.id %}'"
+                type="button">
+                Créer une critique {{article.id}}
+                </button>
+              {% endif %}
+          {% comment %}  If there is a review, let's display it {% endcomment %}
+            {% else %}
+                {% include "review_display.html" %}
+            {% endif %}
+        </p>
+        <br>
+        <br>
+        </div>
+        {%endif%}

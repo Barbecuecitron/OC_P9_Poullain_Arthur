@@ -1,0 +1,18 @@
+{% extends 'navbar.html' %}
+
+{% block content %}
+    <h1>Effectuer une revue :</h1>
+    <h4>Oeuvre concernée :</h4>
+    <form method="POST" action="{% url 'self_resolved'%}">
+     {% comment %} {% csrf_token %} {% endcomment %}
+    {{formset1}}
+    {% comment %} <input type="submit"> {% endcomment %}
+    {% comment %} </form>  {% endcomment %}
+
+    <h4>Votre review :</h4>
+    {% comment %} <form method="POST" action="{% url 'self_resolved'%}"> {% endcomment %}
+     {% csrf_token %}
+    {{formset2}}
+     <input type="submit">
+    </form> 
+{% endblock %}

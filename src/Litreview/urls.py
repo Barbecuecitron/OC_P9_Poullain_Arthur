@@ -16,9 +16,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.urls.conf import include
-
 import user_login.views
-
+# import abonnement.urls
+# import posts.urls
 urlpatterns = [
     path('admin/', admin.site.urls),
     # Pour ajouter une liste d'URLS d'une app, suivre le chemin
@@ -26,6 +26,10 @@ urlpatterns = [
     # path('user_login', include("user_login.urls")),
     path('', user_login.views.login_page, name='login'),
     path('logout/', user_login.views.logout_user, name='logout'),
-    path("", include('home.urls')),
+    # path("", include('home.urls')),
     path('signup/', user_login.views.signup_page, name='signup'),
+    # path('my_posts/', include('my_posts.urls')),
+    path("abonnement/", include("abonnement.urls")),
+    path("flux/", include("posts.urls")),
+    path("posts/", include("posts.urls"))
 ]
