@@ -1,8 +1,14 @@
- Réponse de {{article.review.user}} {{article.review.time_created|date:'d F Y'}}
-    <h4> {{article.review.headline}} - {{article.review.rating}}/5</h4>
-    {{article.review.body}}<br>
-    {{article.review.description}} <br>
-    {% if article.review.user_id == user.id %}
-    <a href="{% url 'write_review' id_article=article.id %}"> Modifier {{article.review.id}}</a>
-    <a href="{% url 'delete_post' id_article=article.review.id type=1 %}"> Delete {{article.review.id}}</a> <br><br>
-{% endif %}
+<div class="review">
+  <p class="small-text-info">
+    Réponse de
+    <strong>{{article.review.user}}</strong>
+    {{article.review.time_created|date:'d F Y'}}
+  </p>
+  <h4>{{article.review.headline}} - {{article.review.rating}}/5</h4>
+  <p class="left-text">{{article.review.body}} {{article.review.description}}</p>
+  {% if article.review.user_id == user.id %}
+  <a class="pretty-a" href="{% url 'write_review' id_article=article.id %}"> Modifier</a>
+  <a class="pretty-a" href="{% url 'delete_post' id_article=article.review.id type=1 %}">
+    Supprimer</a>
+  {% endif %}
+</div>

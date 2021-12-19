@@ -1,16 +1,7 @@
 from django.db import models
-from django.conf import settings  # new
-#from django.contrib.auth import get_user_model
+from django.conf import settings
 from django.db.models.fields import PositiveSmallIntegerField
-#from django.core.exceptions import ValidationError
 from django.core import validators
-from django.db.models.fields.files import ImageField
-
-#from posts.forms import TicketForm
-#from user_login.models import User
-# Create your models here.
-
-# edit_date = models.DateTimeField(auto_now=True)
 
 
 class Ticket(models.Model):

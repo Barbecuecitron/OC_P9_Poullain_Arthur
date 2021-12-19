@@ -1,9 +1,6 @@
-from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
-from django.http import request
 from django.shortcuts import redirect, render
 from user_login.models import User
-from django.urls import reverse
 from abonnement.forms import FollowForm
 from abonnement.models import Friendship
 
@@ -65,8 +62,7 @@ def open_abonnement_page(request):
                 # Does the user exist in db ?
                 new_to_follow = User.objects.get(
                     username=followed)
-            except:
-                User.DoesNotExist
+            except User.DoesNotExist:
                 new_to_follow = None
 
             if new_to_follow is not None:

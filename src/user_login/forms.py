@@ -4,8 +4,14 @@ from django.contrib.auth import get_user_model
 
 
 class LoginForm(forms.Form):
-    username = forms.CharField(max_length=63)
-    password = forms.CharField(max_length=63, widget=forms.PasswordInput)
+    username = forms.CharField(
+        label="Nom d'utilisateur", label_suffix="", max_length=63)
+    username.widget.attrs.update({'class': 'charfield'})
+
+    password = forms.CharField(
+        label="Mot de passe", label_suffix="",
+        max_length=63, widget=forms.PasswordInput)
+    password.widget.attrs.update({'class': 'charfield'})
 
 
 class SignupForm(UserCreationForm):

@@ -1,38 +1,45 @@
 {%if article.rating is none %}
-        
-        <div  class="Ticket">
-        <p>
-          Ticket n°{{article.id}} - {{article.user}} {{article.time_created|date:'d F Y'}}:{{article.time_created|time:"h:i a"}}
-          <h4> {{article.title}} </h4>
-          {{article.description}} <br>
-          {% if article.image.url is not none%}
-          <img src="{{ article.image.url }}"/><br>
-          {% else %}
-          <img src="/images/litreview_defaultimage.png"/><br>
-          {% endif %}
+
+<div  class="Ticket">
+    {% if article.review %}
+      {% include "review_display.html" %}
+    {% endif %}
+  <p class = "small-text-info">
+    Ticket n°{{article.id}} - <strong>{{article.user}}</strong> {{article.time_created|date:'d F Y'}}:{{article.time_created|time:"h:i a"}}
+  </p>
+    {% comment %} <p> {% endcomment %}
+    <h4> {{article.title}} </h4>
+    <p class="left-text">
+    {{article.description}}
+    </p>
+    {% comment %} </p> {% endcomment %}
+    {% if article.image.url is not none%}
+        <img class = "ticket-img" src="{{ article.image.url }}"/>
+    {% else %}
+        <img class = "ticket-img" src="/images/litreview_defaultimage.png"/>
+    {% endif %}
 
         {% comment %} Are we the author ? If so, we can modify the post {% endcomment %}
-          {% if user.id == article.user.id %}
-            <a href="{% url 'write_ticket' id_article=article.id %}"> Modifier {{article.id}}</a>
-            <a href="{% url 'delete_post' id_article=article.id type=0%}"> Delete {{article.id}}</a> <br><br>
-          {% endif %}
+    {% if user.id == article.user.id %}
+      <div class="buttons-container">
+        <a class="btn" href="{% url 'write_ticket' id_article=article.id %}"> Modifier</a>
+        <a class="btn btn-secondary" href="{% url 'delete_post' id_article=article.id type=0%}"> Supprimer</a>
+      </div>
+    {% endif %}
+
+
+        {% if not article.review %}
+            {% comment %} Except if we are the author. {% endcomment %}
+      {% if user.id != article.user.id %}
+        <button class="btn"
+          onclick="location.href='{% url 'write_review' id_article=article.id %}'"
+          type="button">
+          Créer une critique {{article.id}}
+        </button>
+      {% endif %}
+    {% endif %}
           {% comment %}  If there is no answer to the ticket : {% endcomment %}
             {% comment %} If there is no review yet, we should be able to create one {% endcomment %}
-            {% if not article.review %}
-            {% comment %} Except if we are the author. {% endcomment %}
-              {% if user.id != article.user.id %}
-                <button class="create_critic_button"
-                onclick="location.href='{% url 'write_review' id_article=article.id %}'"
-                type="button">
-                Créer une critique {{article.id}}
-                </button>
-              {% endif %}
-          {% comment %}  If there is a review, let's display it {% endcomment %}
-            {% else %}
-                {% include "review_display.html" %}
-            {% endif %}
-        </p>
-        <br>
-        <br>
-        </div>
-        {%endif%}
+
+</div>
+{%endif%}

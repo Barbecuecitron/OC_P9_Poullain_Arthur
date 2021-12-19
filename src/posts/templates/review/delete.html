@@ -1,7 +1,7 @@
 {% extends 'navbar.html' %}
 {% block content %}
 {% if user.id != item.user.id %}
-    <h1>Vous n'êtes pas autorisé à faire ça. Chenapan va.</h1>
+    <h4>Vous n'êtes pas autorisé à faire ça. Chenapan va.</h4>
     
 {% else %} 
 
@@ -16,8 +16,8 @@
     {% endif %}
         {% comment %} <h1> {{type}} </h1> {% endcomment %}
         <form action="{%url 'delete_post' item.id type%}" method="POST">
-        <a href="{% url 'flux'%}"> Cancel</a>
-        <input type = "submit" name = "Confirm">
+        <input class="btn" type = "submit" value = "Confirmer">
+        <a class="btn btn-secondary" href="{% url 'flux'%}"> Annuler</a>
         {% csrf_token %}
         </form>
 {% endif %}

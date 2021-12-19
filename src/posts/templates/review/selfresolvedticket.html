@@ -1,13 +1,15 @@
 {% extends 'navbar.html' %}
 
 {% block content %}
-    <h1>Effectuer une revue :</h1>
+<div class="formulaire">
     <h4>Oeuvre concernée :</h4>
     <form method="POST" enctype="multipart/form-data" action="{% url 'self_resolved'%}">
     {{formset1}}
     <h4>Votre review :</h4>
      {% csrf_token %}
     {{formset2}}
-     <input type="submit">
+     <input class="btn" type="submit">
     </form> 
+</div>
 {% endblock %}
+

@@ -1,8 +1,9 @@
 {% extends 'navbar.html' %}
 
 {% block content %}
+<div class="container">
   <ul>
-      {% if message %}
+    {% if message %}
       <h4> {{message}} </h4>
     {% endif %}
 
@@ -13,4 +14,5 @@
       {% endfor %}
   {% endif %}
 </ul>
+</div>
 {% endblock %}

@@ -1,10 +1,12 @@
 {% extends 'base.html' %} {% block content %}
 {% if not user.is_authenticated %}
 <p>{{ message }}</p>
-<form method="post">
+
+<form method="post" class="container login-container">
   {{ form.as_p }} {% csrf_token %}
-  <button type="submit">Connexion</button>
-  <a href="{%url 'signup' %}"> Nouveau ? Créer un compte </a>
+  <button class="btn btn-login" type="submit">Connexion</button>
+  <a href="{%url 'signup' %}" class = "not-so-important-link"> Nouveau ? Créer un compte </a>
 </form>
+
 {% endif %}
 {% endblock content %}

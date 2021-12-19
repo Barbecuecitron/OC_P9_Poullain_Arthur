@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>.\posts\urls.py - flake8 annotated source</title>
+      <meta http-equiv="Content-Type" value="text/html; charset=UTF-8">
+      <link rel="stylesheet" href="styles.css">
+   </head>
+   <body>
+      <div id="masthead" class="sev-2"></div>
+      <div id="page">
+         <h1>
+            <a href="posts.urls.report.html">
+               <img src="back.svg" alt="&#x2B05;">
+               .\posts\urls.py source
+            </a>
+         </h1>
+
+         <div id="doc">
+            <div id="l1"
+               class="code sev- "><tt><i>1</i> <span class="kn">from</span> <span class="nn">django.urls.conf</span> <span class="kn">import</span> <span class="n">path</span></tt>
+            </div>
+            <div id="l2"
+               class="code sev- "><tt><i>2</i> <span class="kn">from</span> <span class="nn">posts.views</span> <span class="kn">import</span> <span class="n">list_articles</span><span class="p">,</span> <span class="n">write_review</span><span class="p">,</span> <span class="n">write_ticket</span><span class="p">,</span> <span class="n">delete_post</span><span class="p">,</span> <span class="n">create_and_resolve</span><span class="p">,</span> <span class="n">my_posts</span></tt>
+            </div>
+            <div id="l3"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E501
+                     </span>
+                     Line too long (108 > 79 characters)</li>
+               
+               </ul><tt><i>3</i> &nbsp;</tt>
+            </div>
+            <div id="l4"
+               class="code sev- "><tt><i>4</i> <span class="n">urlpatterns</span> <span class="o">=</span> <span class="p">[</span></tt>
+            </div>
+            <div id="l5"
+               class="code sev- "><tt><i>5</i>     <span class="n">path</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">list_articles</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;flux&quot;</span><span class="p">),</span></tt>
+            </div>
+            <div id="l6"
+               class="code sev- "><tt><i>6</i>     <span class="n">path</span><span class="p">(</span><span class="s1">&#39;write/&#39;</span><span class="p">,</span> <span class="n">write_review</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;write_review&quot;</span><span class="p">),</span></tt>
+            </div>
+            <div id="l7"
+               class="code sev- "><tt><i>7</i>     <span class="n">path</span><span class="p">(</span><span class="s1">&#39;write/&lt;int:id_article&gt;/&#39;</span><span class="p">,</span></tt>
+            </div>
+            <div id="l8"
+               class="code sev- "><tt><i>8</i>          <span class="n">write_review</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;write_review&quot;</span><span class="p">),</span></tt>
+            </div>
+            <div id="l9"
+               class="code sev- "><tt><i>9</i>     <span class="n">path</span><span class="p">(</span><span class="s2">&quot;ask/&quot;</span><span class="p">,</span> <span class="n">write_ticket</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;write_ticket&quot;</span><span class="p">),</span></tt>
+            </div>
+            <div id="l10"
+               class="code sev- "><tt><i>10</i>     <span class="n">path</span><span class="p">(</span><span class="s2">&quot;ask/&lt;int:id_article&gt;/&quot;</span><span class="p">,</span> <span class="n">write_ticket</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;write_ticket&quot;</span><span class="p">),</span></tt>
+            </div>
+            <div id="l11"
+               class="code sev- "><tt><i>11</i>     <span class="n">path</span><span class="p">(</span><span class="s2">&quot;delete_post/&lt;int:id_article&gt;/&lt;int:type&gt;&quot;</span><span class="p">,</span></tt>
+            </div>
+            <div id="l12"
+               class="code sev- "><tt><i>12</i>          <span class="n">delete_post</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;delete_post&quot;</span><span class="p">),</span></tt>
+            </div>
+            <div id="l13"
+               class="code sev- "><tt><i>13</i>     <span class="n">path</span><span class="p">(</span><span class="s1">&#39;self_resolved/&#39;</span><span class="p">,</span></tt>
+            </div>
+            <div id="l14"
+               class="code sev- "><tt><i>14</i>          <span class="n">create_and_resolve</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;self_resolved&quot;</span><span class="p">),</span></tt>
+            </div>
+            <div id="l15"
+               class="code sev- "><tt><i>15</i>     <span class="n">path</span><span class="p">(</span><span class="s2">&quot;my_posts/&quot;</span><span class="p">,</span> <span class="n">my_posts</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_posts&quot;</span><span class="p">)</span></tt>
+            </div>
+            <div id="l16"
+               class="code sev- "><tt><i>16</i> <span class="p">]</span></tt>
+            </div>
+            
+         </div>
+      </div>
+   </body>
+</html>

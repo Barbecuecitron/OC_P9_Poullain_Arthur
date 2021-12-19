@@ -1,15 +1,17 @@
 {% extends 'navbar.html' %}
 
 {% block content %}
-<h1>{{ message }} une demande :</h1>
+<div class="formulaire">
+<h4>{{ message }} une demande :</h4>
     {% if form.instance.id %}
-        <h2> {{form.instance.id}}</h2>
+        {% comment %} <h2> {{form.instance.id}}</h2> {% endcomment %}
         <form method="POST"  enctype="multipart/form-data" action="{% url 'write_ticket' id_article=form.instance.id %}">
     {% else %}
         <form method="POST" enctype="multipart/form-data" action="{% url 'write_ticket'%}">
     {% endif %}
      {% csrf_token %}
     {{ form }}
-    <input type="submit">
+    <input class="btn" type="submit">
     </form>
+</div>
 {% endblock %}

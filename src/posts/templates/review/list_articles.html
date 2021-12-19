@@ -1,25 +1,25 @@
-{% extends 'navbar.html' %}
-
-{% block content %}
+{% extends 'navbar.html' %} {% block content %}
+<div class="container">
+  {% comment %}
   <h2>Flux</h2>
-  <form action="{% url 'write_ticket' %}" method='GET'>
-<button type='submit'> Demander une critique</button>
-</form>
-  <form action="{% url 'self_resolved' %}" method='GET'>
-<button type='submit'> Créer une critique</button>
-</form>
-
-
+  {% endcomment %}
+  <div class="buttons-container">
+    <form action="{% url 'write_ticket' %}" class="form_button" method="GET">
+      <button class="btn" type="submit">Demander une critique</button>
+    </form>
+    <form action="{% url 'self_resolved' %}" class="form_button" method="GET">
+      <button class="btn btn-secondary" type="submit">
+        Créer une critique
+      </button>
+    </form>
+  </div>
+  {% if message %}
+  <p>{{message}}</p>
+  {% endif %} {% if articles %}
   <ul>
-      {% if message %}
-      <h4> {{message}} </h4>
-    {% endif %}
-
-  {% if articles %}
-    {% for article in articles %}
-        {% comment %} If its a Ticket & not a review {% endcomment %}
-      {% include "ticket_display.html" %}
-      {% endfor %}
+    {% for article in articles %} {% comment %} If its a Ticket & not a review
+    {% endcomment %} {% include "ticket_display.html" %} {% endfor %}
+  </ul>
   {% endif %}
-</ul>
+</div>
 {% endblock %}

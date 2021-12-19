@@ -1,14 +1,14 @@
 from django.contrib.auth.decorators import login_required
-from django.db import models
-from django.forms.formsets import formset_factory
 from django.shortcuts import redirect, render
 
 from posts.forms import ReviewForm, TicketForm
 from posts.models import Review, Ticket
 from abonnement.models import Friendship
-
+from itertools import chain
 
 # Get a list of followed users ids
+
+
 def get_followed_users(user_pk):
     followed_users = Friendship.objects.filter(user_id=user_pk)
     print(f"Vous suivez {followed_users}")
@@ -27,7 +27,7 @@ def get_followed_users(user_pk):
 # Retrieves every Ticket made by the user passed in,
 # As well as Tickets answered by the passed in user.
 
-def get_everythin_user_related(user_identifier):
+def get_everything_user_related(user_identifier):
     ur_tickets = Ticket.objects.filter(user_id=user_identifier)
     # Retrieve every ticket from the author, with their responses
     for user_related_ticket in ur_tickets:
@@ -35,9 +35,9 @@ def get_everythin_user_related(user_identifier):
             linked_review = Review.objects.get(
                 ticket_id=user_related_ticket.pk)
             user_related_ticket.review = linked_review
-        except:
-            Review.DoesNotExist
-    # Retrieve every review from the author, linked to their original ticket
+        except Review.DoesNotExist:
+            pass
+            # Retrieve every review from the author, linked to their original ticket
     ur_reviews = Review.objects.filter(user_id=user_identifier)
     tickets_answered_by_user = []
     for user_related_review in ur_reviews:
@@ -58,7 +58,7 @@ def get_everythin_user_related(user_identifier):
 def my_posts(request):
     # Loads our tickets & their responses.
     # Then load our responses with their tickets.
-    my_articles = get_everythin_user_related(request.user.pk)
+    my_articles = get_everything_user_related(request.user.pk)
 
     context = {}
     if len(my_articles) == 0:
@@ -71,18 +71,26 @@ def my_posts(request):
 def list_articles(request):
     followed_users = get_followed_users(request.user.pk)
     context = {}
+
     #  If we don't follow anyone
-    if followed_users == False:
-        context['message'] = 'Vous ne suivez personne et ne verrez donc aucun post. Rendez-vous dans la rubrique "Abonnements" pour commencer à suivre des utilisateurs !'
+    if followed_users is False:
+        context['message'] = ('Vous ne suivez personne et ne verrez donc aucun post.'
+                              'Rendez-vous dans la rubrique "Abonnements" pour commencer à suivre des utilisateurs !')
     else:
         tickets_to_display = Ticket.objects.filter(user_id__in=followed_users)
         for ask in tickets_to_display:
             try:
                 linked_review = Review.objects.get(ticket_id=ask.pk)
                 ask.review = linked_review
-            except:
-                Review.DoesNotExist
+            except Review.DoesNotExist:
+                pass
         context['articles'] = tickets_to_display
+        context['articles'] = sorted(context['articles'],
+                                     key=lambda post: post.time_created,
+                                     reverse=True
+                                     )
+    # return render(request, 'feed.html', context={'posts': posts})
+
     return render(request, "review/list_articles.html", context)
 
 
@@ -93,14 +101,12 @@ def write_review(request, id_article):
         pk=id_article)
     try:
         id_review = Review.objects.get(ticket_id=id_article)
-    except:
-        Review.DoesNotExist
+    except Review.DoesNotExist:
         id_review = None
 
     if request.method == "GET":
         if id_review is None:
             message = "Ajouter"
-           # form = ReviewForm(request.POST)
         else:
             message = "Modifier"
         form = ReviewForm(instance=id_review)
@@ -113,8 +119,7 @@ def write_review(request, id_article):
         try:
             review_instance = Review.objects.get(ticket_id=id_article)
             form = ReviewForm(request.POST, instance=review_instance)
-        except:
-            Review.DoesNotExist
+        except Review.DoesNotExist:
             review_instance = None
             form = ReviewForm(request.POST)
         if form.is_valid():
@@ -158,7 +163,6 @@ def write_ticket(request, id_article=None):
 def create_and_resolve(request):
     # Create the HTML get with our 2 forms in 1 page
     if request.method == "GET":
-        formset = formset_factory(TicketForm, ReviewForm)
         context = {'formset1': TicketForm, 'formset2': ReviewForm}
         return render(request, "review/selfresolvedticket.html", context)
 

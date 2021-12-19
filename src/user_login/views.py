@@ -1,8 +1,6 @@
 from django.contrib.auth import login, authenticate, logout
-from django.http import request  # add to imports
 from django.shortcuts import render, redirect
 from . import forms
-from django.conf import settings
 # from django.http import HttpResponse
 # Create your views here.
 
@@ -28,7 +26,6 @@ def login_page(request, msg=False):
             )
             if user is not None:
                 login(request, user)
-               # message = f'Bienvenue {user.username}!'
                 return redirect("flux")
             else:
                 message = 'Vos identifiants sont incorrects'

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>flake8 violations: .\posts\views.py</title>
+      <meta http-equiv="Content-Type" value="text/html; charset=UTF-8">
+      <link rel="stylesheet" href="styles.css">
+<script>
+function bindHandler(link) {
+   var code = link.getAttribute('data-code');
+   var key = location.pathname + '#' + code;
+
+   var ul = link.parentNode.querySelector('.details');
+   if (sessionStorage[key] != 'open') {
+      ul.style.display = 'none';
+   }
+   link.addEventListener('click', function (event) {
+      if (!ul.style.display || ul.style.display == 'none') {
+         ul.style.display = 'block';
+         sessionStorage[key] = 'open';
+      } else {
+         ul.style.display = 'none';
+         sessionStorage[key] = 'closed';
+      }
+   });
+}
+
+window.addEventListener('DOMContentLoaded', function () {
+   var links = document.querySelectorAll('#index > li > a');
+   for (var i = 0; i < links.length; i++) {
+      bindHandler(links[i]);
+   }
+});
+</script>
+   </head>
+   <body>
+      <div id="masthead" class="sev-1"></div>
+      <div id="page">
+         <p id="srclink">
+            <a title="View full annotated source"
+               href="posts.views.source.html">
+               <img src="file.svg" alt="&#x2261;">
+            </a></p>
+         <h1>
+            <a href="index.html">
+               <img src="back.svg" alt="&#x2B05;">
+               .\posts\views.py
+            </a>
+         </h1>
+
+         <ul id="index">
+         
+         <li>
+            <a data-code="F401">
+               <span class="count sev-1">
+                  1
+               </span>
+               <strong>F401:</strong> 'itertools.chain' imported but unused
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <a href="posts.views.source.html#l7">
+                  <tt><i>7</i> <span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">chain</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         <li>
+            <a data-code="E501">
+               <span class="count sev-2">
+                  7
+               </span>
+               <strong>E501:</strong> line too long (84 > 79 characters)
+               
+                  (and 5 similar)
+               
+            </a>
+            <ul class="details">
+            <li>
+               
+               <p>Line too long (84 > 79 characters):</p>
+               
+               <a href="posts.views.source.html#l40">
+                  <tt><i>40</i>             <span class="c1"># Retrieve every review from the author, linked to their original ticket</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (102 > 79 characters):</p>
+               
+               <a href="posts.views.source.html#l44">
+                  <tt><i>44</i>         <span class="c1"># Let&#39;s grab the original ticket user&#39;s ID to check if our user is the the author, if so, pass</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (98 > 79 characters):</p>
+               
+               <a href="posts.views.source.html#l46">
+                  <tt><i>46</i>         <span class="k">if</span> <span class="n">Review</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">ticket_id</span><span class="o">=</span><span class="n">user_related_review</span><span class="o">.</span><span class="n">ticket_id</span><span class="p">)</span><span class="o">.</span><span class="n">user_id</span> <span class="o">==</span> <span class="n">user_identifier</span><span class="p">:</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (102 > 79 characters):</p>
+               
+               <a href="posts.views.source.html#l49">
+                  <tt><i>49</i>             <span class="c1"># We are not the author of the Ticket, let&#39;s add it to our tickets list, no clash possible</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (85 > 79 characters):</p>
+               
+               <a href="posts.views.source.html#l76">
+                  <tt><i>76</i>         <span class="n">context</span><span class="p">[</span><span class="s1">&#39;message&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;Vous ne suivez personne et ne verrez donc aucun post.&#39;</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (118 > 79 characters):</p>
+               
+               <a href="posts.views.source.html#l77">
+                  <tt><i>77</i>                               <span class="s1">&#39;Rendez-vous dans la rubrique &quot;Abonnements&quot; pour commencer à suivre des utilisateurs !&#39;</span><span class="p">)</span></tt>
+               </a>
+            </li><li>
+               
+               <p>Line too long (83 > 79 characters):</p>
+               
+               <a href="posts.views.source.html#l173">
+                  <tt><i>173</i>             <span class="c1"># We can&#39;t return the forms separately from the HTML&#39;s POST request, so</span></tt>
+               </a>
+            </li>
+            </ul>
+         </li>
+         
+         </ul>
+      </div>
+   </body>
+</html>
