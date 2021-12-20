@@ -4,13 +4,17 @@
 <div class="container">
 <h4>{{ message }} une critique :</h4>
 <div  class="Ticket">
-        <p>
           Ticket n°{{ticket.id}} - {{ticket.user}}
             <h4> {{ticket.title}} </h4>
-            {{ticket.description}} <br>
+        <p>
+            {{ticket.description}}
         </p>
-    <form method="POST" action="{% url 'write_review' id_article=ticket.id %}">
-    
+             {% if ticket.image.url is not none%}
+        <img class = "ticket-img" src="{{ ticket.image.url }}"/>
+        {% else %}
+        <img class = "ticket-img" src="/images/litreview_defaultimage.png"/>
+        {% endif %}
+          <form method="POST" action="{% url 'write_review' id_article=ticket.id %}">
          {% csrf_token %}
     {{ form }}
     <input class="btn" type="submit">

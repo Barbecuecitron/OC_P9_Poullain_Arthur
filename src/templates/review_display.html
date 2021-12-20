@@ -2,11 +2,11 @@
   <p class="small-text-info">
     Réponse de
     <strong>{{article.review.user}}</strong>
-    {{article.review.time_created|date:'d F Y'}}
+    {{article.review.time_created|date:'d F Y'}}:{{article.time_created|time:"h:i a"}}
   </p>
   <h4>{{article.review.headline}} - {{article.review.rating}}/5</h4>
   <p class="left-text">{{article.review.body}} {{article.review.description}}</p>
-  {% if article.review.user_id == user.id %}
+  {% if article.review.user_id == user.id and article.id is not none %}
   <a class="pretty-a" href="{% url 'write_review' id_article=article.id %}"> Modifier</a>
   <a class="pretty-a" href="{% url 'delete_post' id_article=article.review.id type=1 %}">
     Supprimer</a>

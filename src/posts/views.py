@@ -4,7 +4,6 @@ from django.shortcuts import redirect, render
 from posts.forms import ReviewForm, TicketForm
 from posts.models import Review, Ticket
 from abonnement.models import Friendship
-from itertools import chain
 
 # Get a list of followed users ids
 
@@ -99,6 +98,7 @@ def write_review(request, id_article):
     # Grab the ticket we are answering to
     instance_ticket = Ticket.objects.get(
         pk=id_article)
+
     try:
         id_review = Review.objects.get(ticket_id=id_article)
     except Review.DoesNotExist:
@@ -112,6 +112,7 @@ def write_review(request, id_article):
         form = ReviewForm(instance=id_review)
         # Used in the HTML
         ticket = instance_ticket
+        # print(ticket.image.url)
         return render(request, "review/review.html", locals())
 
     elif request.method == "POST":

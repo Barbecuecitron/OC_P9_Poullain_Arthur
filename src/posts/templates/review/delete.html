@@ -4,13 +4,13 @@
     <h4>Vous n'êtes pas autorisé à faire ça. Chenapan va.</h4>
     
 {% else %} 
-
+    <div class="container">
     <p> Êtes-vous sûr de vouloir supprimer ce post ?</p>
     {% comment %} 0 = ticket, 1 = review, optimized way to check the post's type {% endcomment %}
     {% if type == 1 %}
-    <h4>Suppression d'un commentaire</h4>
-        <h4> {{item.headline}} </h4>
-        <h4> {{item.body}} </h4>
+    <h4>Suppression d'une Review</h4>
+        {% comment %} <h4> {{item.headline}} </h4>
+        <h4> {{item.body}} </h4> {% endcomment %}
     {% else %}
     <h4> Suppression d'un Ticket </h4>
     {% endif %}
@@ -20,5 +20,6 @@
         <a class="btn btn-secondary" href="{% url 'flux'%}"> Annuler</a>
         {% csrf_token %}
         </form>
+    </div>
 {% endif %}
 {% endblock %}
