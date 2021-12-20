@@ -11,14 +11,16 @@ LITReview, A Django Web Project
 * Run the following command to install the environment from the repository : ``` $ pip3 install -r requirements.txt ```
 ---
 # How to use ?
-* Go into the "src" folder
-* Run the app : ``` $ python main.py ```
-* Input keys from the menu to access certain part.
-* Everything saved is located at "Projet 4/Sauvegardes/sauvegarde.json"
+* Run env\Scripts\Activate to activate the venv
+* Go to the src directory ``` $cd src ```
+* Run the app : ``` $python manage.py runserver```
+* Browe the website locally at : http://localhost:8000/
+* The db will be located in the src folder under the name of db.sqlite3
+* The uploaded images will be saved in src\static\images\
 --
 # Generate Flake-8 HTML reports
 * Install flake-8 HTML : ```$ pip install flake8-html  ```
-* Run : ```$ flake8 --max-line-length=119 --format=html --htmldir=flake-report ```
+* Run : ```$ flake8 --max-line-length=150 --format=html --htmldir=flake-report ```
 ---
 ## Contributors
 * Arthur P
