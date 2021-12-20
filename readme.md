@@ -19,9 +19,9 @@ LITReview, A Django Web Project (Python 3.8.5)
 # Generate Flake-8 HTML reports
 * Install flake-8 HTML : ```$ pip install flake8-html  ```
 * Run : ```$ flake8 --max-line-length=150 --format=html --htmldir=flake-report ```
----
+
 ## Contributors
 * Arthur P
----
+
 ## License & copyright
 © Absolutely no Copyrights 
