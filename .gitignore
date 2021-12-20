@@ -2,4 +2,5 @@ __pycache__
 db.sqlite3 
 .idea 
 etapes.txt 
+migrations/
 instructions.txt 
