@@ -1,9 +1,7 @@
 # OC_P9_Poullain_Arthur
 
-Python version used : Python 3.8.5
----
-LITReview, A Django Web Project
----
+LITReview, A Django Web Project (Python 3.8.5)
+
 # Installation guide :
 * Install Python3.8 : ```$ sudo apt install python3.8```
 * Install the pip package if you don't have it : ``` $ sudo apt install python3-pip ```
