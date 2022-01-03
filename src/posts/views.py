@@ -61,7 +61,7 @@ def my_posts(request):
 
     context = {}
     if len(my_articles) == 0:
-        context['message'] = "Vous pourrez voir vos posts / réponses ici !"
+        context['message'] = "Vous pourrez voir vos posts ici !"
     context['articles'] = my_articles
     return render(request, "review/my_posts.html", context)
 

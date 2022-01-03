@@ -1,13 +1,17 @@
 # OC_P9_Poullain_Arthur
 
-LITReview, A Django Web Project (Python 3.8.5)
+LITReview, A Django Web Project (Python 3.8)
 
 # Installation guide :
-* Install Python3.8 : ```$ sudo apt install python3.8```
-* Install the pip package if you don't have it : ``` $ sudo apt install python3-pip ```
 * Clone the Repository : ```$ git clone https://github.com/Barbecuecitron/OC_P9_Poullain_Arthur ```
+** CREATION D'ENVIRONNEMENT ICI
 * Run the following command to install the environment from the repository : ``` $ pip3 install -r requirements.txt ```
 ---
+# Install the VENV 
+* Create a new environment ``` $python -m venv MyEnv ```
+* Activate the env with ``` $MyEnv\Scripts\Activate ```
+* Install the required libraries in the env ``` $pip install -r \path\to\repository\requirements.txt ```
+--
 # How to use ?
 * Run env\Scripts\Activate to activate the venv
 * Go to the src directory ``` $cd src ```
@@ -19,9 +23,3 @@ LITReview, A Django Web Project (Python 3.8.5)
 # Generate Flake-8 HTML reports
 * Install flake-8 HTML : ```$ pip install flake8-html  ```
 * Run : ```$ flake8 --max-line-length=150 --format=html --htmldir=flake-report ```
-
-## Contributors
-* Arthur P
-
-## License & copyright
-© Absolutely no Copyrights 

@@ -7,12 +7,12 @@
   <p class = "small-text-info">
     Ticket n°{{article.id}} - <strong>{{article.user}}</strong> {{article.time_created|date:'d F Y'}}:{{article.time_created|time:"h:i a"}}
   </p>
-    {% comment %} <p> {% endcomment %}
+
     <h4> {{article.title}} </h4>
     <p class="left-text">
     {{article.description}}
     </p>
-    {% comment %} </p> {% endcomment %}
+
     {% if article.image.url is not none%}
         <img class = "ticket-img" src="{{ article.image.url }}"/>
     {% else %}
