@@ -17,7 +17,7 @@ LITReview, A Django Web Project (Python 3.8)
 * Browe the website locally at : http://localhost:8000/
 * The db will be located in the src folder under the name of db.sqlite3
 * The uploaded images will be saved in src\static\images\
---
+
 # Generate Flake-8 HTML reports
 * Install flake-8 HTML : ```$ pip install flake8-html  ```
 * Run : ```$ flake8 --max-line-length=150 --format=html --htmldir=flake-report ```
