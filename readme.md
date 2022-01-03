@@ -4,7 +4,7 @@ LITReview, A Django Web Project (Python 3.8)
 
 # Installation guide :
 * Clone the Repository : ```$ git clone https://github.com/Barbecuecitron/OC_P9_Poullain_Arthur ```
----
+
 # Prepare the Venv 
 * Create a new environment ``` $python -m venv MyEnv ```
 * Activate the env with ``` $MyEnv\Scripts\Activate ```
