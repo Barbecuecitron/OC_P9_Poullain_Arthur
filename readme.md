@@ -4,10 +4,8 @@ LITReview, A Django Web Project (Python 3.8)
 
 # Installation guide :
 * Clone the Repository : ```$ git clone https://github.com/Barbecuecitron/OC_P9_Poullain_Arthur ```
-** CREATION D'ENVIRONNEMENT ICI
-* Run the following command to install the environment from the repository : ``` $ pip3 install -r requirements.txt ```
 ---
-# Install the VENV 
+# Prepare the Venv 
 * Create a new environment ``` $python -m venv MyEnv ```
 * Activate the env with ``` $MyEnv\Scripts\Activate ```
 * Install the required libraries in the env ``` $pip install -r \path\to\repository\requirements.txt ```
