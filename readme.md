@@ -11,7 +11,7 @@ LITReview, A Django Web Project (Python 3.8)
 * Install the required libraries in the env ``` $pip install -r \path\to\repository\requirements.txt ```
 --
 # How to use ?
-* Run env\Scripts\Activate to activate the venv
+* Run ``` $MyEnv\Scripts\Activate ``` to activate the venv
 * Go to the src directory ``` $cd src ```
 * Run the app : ``` $python manage.py runserver```
 * Browe the website locally at : http://localhost:8000/
